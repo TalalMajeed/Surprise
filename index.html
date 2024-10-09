@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Surprise!!</title>
+        <link rel="stylesheet" href="./styles.css" />
+    </head>
+    <body>
+        <div class="container">
+            <div class="item">
+                <div class="envelope-wrapper">
+                    <div class="envelope"></div>
+                </div>
+                <div id="l1" class="letter">
+                    <img src="./letter1.jpg" alt="Letter Image" />
+                </div>
+            </div>
+            <div class="item">
+                <div class="envelope-wrapper">
+                    <div class="envelope"></div>
+                </div>
+                <div id="l2" class="letter">
+                    <img src="./letter2.jpg" alt="Letter Image" />
+                </div>
+            </div>
+            <div class="item">
+                <div class="envelope-wrapper">
+                    <div class="envelope"></div>
+                </div>
+                <div id="l3" class="letter">
+                    <img src="./letter3.jpg" alt="Letter Image" />
+                </div>
+            </div>
+            <div class="item">
+                <div class="envelope-wrapper">
+                    <div class="envelope"></div>
+                </div>
+                <div id="l4" class="letter">
+                    <img src="./letter4.jpg" alt="Letter Image" />
+                </div>
+            </div>
+            <div class="item">
+                <div class="envelope-wrapper">
+                    <div class="envelope"></div>
+                </div>
+                <div id="l5" class="letter">
+                    <img src="./letter5.jpg" alt="Letter Image" />
+                </div>
+            </div>
+            <div class="item">
+                <div class="envelope-wrapper">
+                    <div class="envelope"></div>
+                </div>
+                <div id="l6" class="letter">
+                    <img src="./letter6.jpg" alt="Letter Image" />
+                </div>
+            </div>
+            <div class="item">
+                <div class="envelope-wrapper">
+                    <div class="envelope"></div>
+                </div>
+                <div id="l7" class="letter">
+                    <img src="./letter7.jpg" alt="Letter Image" />
+                </div>
+            </div>
+            <div class="item">
+                <div class="envelope-wrapper">
+                    <div class="envelope"></div>
+                </div>
+                <div id="l8" class="letter">
+                    <img src="./letter8.jpg" alt="Letter Image" />
+                </div>
+            </div>
+            <div class="item">
+                <div class="envelope-wrapper">
+                    <div class="envelope"></div>
+                </div>
+                <div id="l9" class="letter">
+                    <img src="./letter9.jpg" alt="Letter Image" />
+                </div>
+            </div>
+            <div class="item">
+                <div class="envelope-wrapper">
+                    <div class="envelope"></div>
+                </div>
+                <div id="l10" class="letter">
+                    <img src="./letter10.jpg" alt="Letter Image" />
+                </div>
+            </div>
+            <div class="item">
+                <div class="envelope-wrapper">
+                    <div class="envelope"></div>
+                </div>
+                <div id="l11" class="letter">
+                    <img src="./letter11.jpg" alt="Letter Image" />
+                </div>
+            </div>
+        </div>
+        <div id="display" class="display">
+            <div class="shade"></div>
+            <img src="./letter11.jpg" alt="Letter Image" />
+        </div>
+        <script>
+            const envelopes = document.getElementsByClassName("item");
+
+            for (let i = 0; i < envelopes.length; i++) {
+                envelopes[i].addEventListener("click", () => {
+                    if (!envelopes[i].classList.contains("flap")) {
+                        envelopes[i].classList.add("flap");
+                        setTimeout(() => {
+                            displayLetter(
+                                envelopes[i].querySelector(".letter img")
+                            );
+                        }, 3000);
+                    }
+                });
+            }
+            const container = document.querySelector(".container");
+            const letters = document.querySelectorAll(".letter");
+
+            container.addEventListener("scroll", () => {
+                const scrollTop = container.scrollTop;
+                const maxScroll =
+                    container.scrollHeight - container.clientHeight;
+                const scrollPercent = scrollTop / maxScroll;
+
+                letters.forEach((letter) => {
+                    letter.style.transform = `translateY(${scrollTop * -1}px)`;
+                });
+            });
+
+            const display = document.getElementById("display");
+            display.addEventListener("click", () => {
+                display.classList.add("fade");
+                setTimeout(() => {
+                    display.style.visibility = "hidden";
+                    display.classList.remove("fade");
+                    display.querySelector("img").classList.remove("comein");
+                    display
+                        .querySelector(".shade")
+                        .classList.remove("backshadein");
+                }, 1000);
+            });
+
+            function displayLetter(letter) {
+                display.style.visibility = "visible";
+                const src = letter.src;
+                console.log(src);
+                if (
+                    src.includes("letter2") ||
+                    src.includes("letter5") ||
+                    src.includes("letter6") ||
+                    src.includes("letter8") ||
+                    src.includes("letter9")
+                ) {
+                    console.log("called");
+                    display.querySelector("img").src = src.replace(
+                        ".jpg",
+                        "-s.jpg"
+                    );
+                } else {
+                    display.querySelector("img").src = src;
+                }
+                display.querySelector("img").classList.add("comein");
+                display.querySelector(".shade").classList.add("backshadein");
+            }
+        </script>
+    </body>
+</html>
