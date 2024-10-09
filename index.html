@@ -101,6 +101,13 @@
             <div class="shade"></div>
             <img src="./letter11.jpg" alt="Letter Image" />
         </div>
+        <div id="initial" class="initial">
+            <div class="shade2"></div>
+            <div class="initial-message">
+                <h1>Happy Birthday Eeman!!</h1>
+                <p>Here's a Gift from your Besties to You!!</p>
+            </div>
+        </div>
         <script>
             const envelopes = document.getElementsByClassName("item");
 
@@ -144,9 +151,10 @@
             });
 
             function displayLetter(letter) {
-                display.style.visibility = "visible";
                 const src = letter.src;
-                console.log(src);
+                const image = display.querySelector("img");
+                let newSrc = src;
+
                 if (
                     src.includes("letter2") ||
                     src.includes("letter5") ||
@@ -154,17 +162,32 @@
                     src.includes("letter8") ||
                     src.includes("letter9")
                 ) {
-                    console.log("called");
-                    display.querySelector("img").src = src.replace(
-                        ".jpg",
-                        "-s.jpg"
-                    );
-                } else {
-                    display.querySelector("img").src = src;
+                    newSrc = src.replace(".jpg", "-s.jpg");
                 }
-                display.querySelector("img").classList.add("comein");
-                display.querySelector(".shade").classList.add("backshadein");
+
+                image.onload = function () {
+                    display.style.visibility = "visible";
+                    image.classList.add("comein");
+                    display
+                        .querySelector(".shade")
+                        .classList.add("backshadein");
+                };
+
+                image.src = newSrc;
             }
+
+            const initial = document.getElementById("initial");
+            initial.addEventListener("click", () => {
+                initial.classList.add("fade");
+                setTimeout(() => {
+                    initial.style.visibility = "hidden";
+                    initial.classList.remove("fade");
+                    initial
+                        .querySelector(".shade2")
+                        .classList.remove("backshadein");
+                    initial.style.cursor = "context-menu";
+                }, 1000);
+            });
         </script>
     </body>
 </html>

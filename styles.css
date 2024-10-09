@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Qwitcher+Grypen:wght@400;700&display=swap");
+
 body {
     margin: 0;
     padding: 0;
@@ -5,7 +7,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #07363d;
+    background-color: #711aab;
     width: 100svw;
     height: 100svh;
     overflow: hidden;
@@ -19,6 +21,7 @@ body {
     gap: 50px;
     overflow-y: scroll;
     overflow-x: hidden;
+    cursor: context-menu;
 }
 
 .item {
@@ -126,6 +129,21 @@ body {
     transition: opacity 1s ease-in-out;
 }
 
+.initial {
+    font-family: "Poppins";
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100svw;
+    height: 100svh;
+    z-index: 50;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    transition: opacity 1s ease-in-out;
+}
+
 .shade {
     position: absolute;
     top: 0;
@@ -134,6 +152,18 @@ body {
     height: 100svh;
     background-color: rgba(0, 0, 0, 0.5);
     opacity: 0;
+    transition: opacity 1s ease-in-out;
+    cursor: pointer;
+}
+
+.shade2 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100svw;
+    height: 100svh;
+    background-color: rgba(0, 0, 0, 0.5);
+    opacity: 1;
     transition: opacity 1s ease-in-out;
 }
 
@@ -160,13 +190,21 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: #2392a3;
+    background: #c58cec;
 }
 
 ::-webkit-scrollbar-thumb {
-    background: #125b67;
+    background: #9b42d6;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #125b67;
+    background: #9b42d6;
+}
+
+.initial-message {
+    background-color: white;
+    text-align: center;
+    padding: 100px;
+    z-index: 500;
+    cursor: pointer;
 }
