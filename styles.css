@@ -7,7 +7,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #711aab;
+    background-color: #c890ed;
     width: 100svw;
     height: 100svh;
     overflow: hidden;
@@ -190,7 +190,7 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-    background: #c58cec;
+    background: #cfa7ea;
 }
 
 ::-webkit-scrollbar-thumb {
@@ -198,7 +198,7 @@ body {
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #9b42d6;
+    background: #b86ee9;
 }
 
 .initial-message {
@@ -207,4 +207,64 @@ body {
     padding: 100px;
     z-index: 500;
     cursor: pointer;
+}
+
+body {
+    margin: 0;
+}
+
+#balloon-container {
+    position: absolute;
+    height: 100vh;
+    padding: 1em;
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+    transition: opacity 500ms;
+    z-index: -1;
+}
+
+.balloon {
+    height: 125px;
+    width: 105px;
+    border-radius: 75% 75% 70% 70%;
+    position: relative;
+}
+
+.balloon:before {
+    content: "";
+    height: 75px;
+    width: 1px;
+    padding: 1px;
+    background-color: #fdfd96;
+    display: block;
+    position: absolute;
+    top: 125px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.balloon:after {
+    content: "▲";
+    text-align: center;
+    display: block;
+    position: absolute;
+    color: inherit;
+    top: 120px;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+@keyframes float {
+    from {
+        transform: translateY(100vh);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-300vh);
+        opacity: 0;
+    }
 }
